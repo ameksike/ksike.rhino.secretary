@@ -3,7 +3,7 @@ Librería ligera para abstracción de acceso a dato, su distro Rhino está orien
 
 ejemplos:
 
-<script>
+```javascript
 	//... estableciendo una conexión a una base de datos SQLite
 	this.query = require("secretary").configure({
 		driver: "sqlite",
@@ -37,4 +37,4 @@ ejemplos:
 		driver: "sqlite",
 		data: 'data/ploy.db'
 	});
-</script>
+```
