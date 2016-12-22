@@ -2,6 +2,8 @@
 Librería ligera para abstracción de acceso a dato, su distro Rhino está orientada al lenguaje de programación JavaScript sobre NodeJs version 6.9.1 o superior.
 
 ejemplos:
+
+<pre>
 	//... estableciendo una conexión a una base de datos SQLite
 	this.query = require("secretary").configure({
 		driver: "sqlite",
@@ -35,4 +37,4 @@ ejemplos:
 		driver: "sqlite",
 		data: 'data/ploy.db'
 	});
-	
+</pre>
