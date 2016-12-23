@@ -7,7 +7,7 @@ ejemplos:
 	//... estableciendo una conexión a una base de datos SQLite
 	this.query = require("secretary").configure({
 		driver: "sqlite",
-		data: 'data/ploy.db'
+		name: 'data/ploy.db'
 	});
 	//... como ejecutar una selección de datos sobre la base de datos seleccionada
 	this.query.execute(

@@ -30,7 +30,7 @@ class Main
         driver = driver ? driver : this.cfg.driver;
         if(driver){
             if(this.drs[driver]) return this.drs[driver];
-            var file = __dirname +  "/driver/Dr" + driver.toUpperCase() + ".js";
+            var file = __dirname +  "/../../lib/" + driver.toLowerCase();
             if(!require('fs').existsSync(file))  return false;
             var Class = require(file);
             Class = Class.Main ?  Class.Main : Class;

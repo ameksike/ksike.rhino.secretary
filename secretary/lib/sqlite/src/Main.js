@@ -14,7 +14,9 @@
 class DrSQLITE
 {
     constructor(opt=false){
-        this.cfg = {};
+        this.cfg = {
+			extension: "db"
+		};
         this.connection = false;
         this.rsc = {
             "Sqlite": require('sqlite3').verbose()
@@ -23,8 +25,7 @@ class DrSQLITE
     }
 
     configure(opt=false){
-        this.cfg = opt ? opt : this.cfg;
-        this.cfg.data = this.cfg.data ? this.cfg.data : __dirname + "/../../default.db";
+		for(var i in opt) this.cfg[i] = opt[i];
         this.cfg.log = this.cfg.log ? this.cfg.log : __dirname + "/../../log/";
         return this;
     }
@@ -44,7 +45,7 @@ class DrSQLITE
             if(!sql.match("SELECT|select")) {
                 this.connection.serialize(function(){ _this.connection.run(sql); });
                 score = score ? score : _this;
-                if(callback) return callback.call(score, rows);
+                if(callback) return callback.call(score);
             }else{
                 this.connection.all(sql, function(error, rows) {
                     if(error){
@@ -62,7 +63,7 @@ class DrSQLITE
                 query.finalize();
             });
             score = score ? score : _this;
-            if(callback) return callback.call(score, rows);
+            if(callback) return callback.call(score);
         }
         this.disconnect();
     }
@@ -72,7 +73,14 @@ class DrSQLITE
     }
 
     dsn(){
-        return this.cfg.data;
+		if(this.cfg.path == ':memory:') return this.cfg.path;
+		if(require('fs').existsSync(this.cfg.name))
+			return this.cfg.name;
+		if(require('fs').existsSync(this.cfg.path + this.cfg.name))
+			return this.cfg.path + this.cfg.name;
+		if(require('fs').existsSync(this.cfg.path + this.cfg.name + "." + this.cfg.extension))
+			return this.cfg.path + this.cfg.name + "." + this.cfg.extension;
+		return ':memory:';
     }
 }
 exports.Main = DrSQLITE;
