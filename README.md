@@ -35,6 +35,6 @@ ejemplos:
 	//... como cargar y configurar la biblioteca en el framework Ksike Rhino
 	this.query = assist.get("ksike/secretary").configure({
 		driver: "sqlite",
-		data: 'data/ploy.db'
+		name: 'data/ploy.db'
 	});
 ```
