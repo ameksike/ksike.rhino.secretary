@@ -54,7 +54,7 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 ## How to create a new custom driver
 This library involves a component-based architecture, allowing developers to extend their behavior. In case you require a controller for any non-existent database manager, its implementation is very simple. You must create a folder with the name of the driver in lowercase inside the directory lib, inside it defines a directory called src and inside it create a file Main.js which will contain the implementation.
 
-### or this example the driver named mydriver will be created: ./lib/mydriver/src/Main.js, with a structure similar to the one shown below:
+### For this example, the driver named mydriver will be created: ./lib/mydriver/src/Main.js, with a structure similar to the one shown below:
 ```javascript
 	class MyDriver
 	{
@@ -80,7 +80,7 @@ This library involves a component-based architecture, allowing developers to ext
 ```javascript
 	//... how to load my custom driver
 	this.query = assist.get("ksike/secretary").configure({
-		driver: "mydriver",
-		name: 'data/ploy.db'
+		driver: "mydriver"
+		//... Here you can specify all the options required by the driver constructor
 	});
 ```
