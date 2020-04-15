@@ -6,8 +6,31 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 + [Secretary: Ksike Framework Elephant focus on PHP](https://github.com/ameksike/ksike.elephant.secretary) 
 
 
-## Examples:
+### How to configure
+```javascript
+	//... how to load and configure the library in the Ksike Rhino framework
+	this.query = assist.get("ksike/secretary").configure({
+		driver: "sqlite",
+		name: 'data/ploy.db'
+	});
+```
 
+### How to run a simplified data selection and process the result 
+```javascript
+	var onData = (rows) => console.log(rows);
+	this.query.execute( "SELECT des FROM Test2", this.onData, this );
+```
+
+### How to do insert or create 
+```javascript
+
+	//... how to execute a data insert
+	this.query.execute([ "INSERT INTO Test2 VALUES (?,?)", [5, "TEST"]]);
+	//... how to create a table in the database
+	this.query.execute( "CREATE TABLE Test2 (id INT, des TEXT)");
+```
+
+### How to used in ksike framework 
 ```javascript
 	//... establishing a connection to a SQLite database
 	this.query = require("secretary").configure({
@@ -26,20 +49,4 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 		},
 		this
 	);
-	//... how to run a simplified data selection and process the result
-    this.query.execute( "SELECT des FROM Test2", this.onData, this );
-	/*
-		onData : function(rows){
-			console.log(rows);
-		},
-	*/
-	//... how to execute a data insert
-	this.query.execute([ "INSERT INTO Test2 VALUES (?,?)", [5, "TEST"]]);
-	//... how to create a table in the database
-	this.query.execute( "CREATE TABLE Test2 (id INT, des TEXT)");
-	//... how to load and configure the library in the Ksike Rhino framework
-	this.query = assist.get("ksike/secretary").configure({
-		driver: "sqlite",
-		name: 'data/ploy.db'
-	});
 ```
