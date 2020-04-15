@@ -4,7 +4,7 @@
  * @package:        Secretary
  * @version:        0.1
  * @authors:        Antonio Membrides Espinosa
- * @mail:           ameksike@gmail.com
+ * @mail:           tonykssa@gmail.com
  * @created:        04/11/2016
  * @updated:        04/11/2016
  * @license:        GPL v3

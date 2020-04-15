@@ -1,5 +1,5 @@
 # Secretary Rhino
-Lightweight library for data access abstraction, your Rhino distro is oriented to the JavaScript programming language on Node.Js version 6.9.1 or higher.
+Lightweight library for data access abstraction, Ksike Framework Rhino distro is oriented to the JavaScript programming language on Node.Js version 6.9.1 or higher.
 
 ## Libs 
 As a technology policy proposed by the Ksike Framework, there are other implementations of this library for other platforms, which are listed below:
@@ -49,4 +49,38 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 		},
 		this
 	);
+```
+
+## How to create a new custom driver
+This library involves a component-based architecture, allowing developers to extend their behavior. In case you require a controller for any non-existent database manager, its implementation is very simple. You must create a folder with the name of the driver in lowercase inside the directory lib, inside it defines a directory called src and inside it create a file Main.js which will contain the implementation.
+
+### or this example the driver named mydriver will be created: ./lib/mydriver/src/Main.js, with a structure similar to the one shown below:
+```javascript
+	class MyDriver
+	{
+		constructor(opt=false){ }
+
+		configure(opt=false){ }
+
+		connect(callback=false, score=false){ }
+
+		disconnect(){ }
+
+		query(sql=false, callback=false, score=false) {}
+
+		onError(error){}
+
+		dsn(){ }
+	}
+
+	exports.Main = MyDriver;
+```
+
+### How to configure
+```javascript
+	//... how to load my custom driver
+	this.query = assist.get("ksike/secretary").configure({
+		driver: "mydriver",
+		name: 'data/ploy.db'
+	});
 ```
