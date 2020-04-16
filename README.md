@@ -8,46 +8,46 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 
 ### How to configure
 ```javascript
-	//... how to load and configure the library in the Ksike Rhino framework
-	this.query = assist.get("ksike/secretary").configure({
-		driver: "sqlite",
-		name: 'data/ploy.db'
-	});
+//... how to load and configure the library in the Ksike Rhino framework
+this.query = assist.get("ksike/secretary").configure({
+	driver: "sqlite",
+	name: 'data/ploy.db'
+});
 ```
 
 ### How to run a simplified data selection and process the result 
 ```javascript
-	var onData = (rows) => console.log(rows);
-	this.query.execute( "SELECT des FROM Test2", this.onData, this );
+var onData = (rows) => console.log(rows);
+this.query.execute( "SELECT des FROM Test2", this.onData, this );
 ```
 
 ### How to do insert or create 
 ```javascript
-	//... how to execute a data insert
-	this.query.execute([ "INSERT INTO Test2 VALUES (?,?)", [5, "TEST"]]);
-	//... how to create a table in the database
-	this.query.execute( "CREATE TABLE Test2 (id INT, des TEXT)");
+//... how to execute a data insert
+this.query.execute([ "INSERT INTO Test2 VALUES (?,?)", [5, "TEST"]]);
+//... how to create a table in the database
+this.query.execute( "CREATE TABLE Test2 (id INT, des TEXT)");
 ```
 
 ### How to used in ksike framework 
 ```javascript
-	//... establishing a connection to a SQLite database
-	this.query = require("secretary").configure({
-		driver: "sqlite",
-		name: 'data/ploy.db'
-	});
-	//... how to run a selection of data on the selected database
-	this.query.execute(
-		"SELECT id, dt as des FROM user",
-		function(rows){
-			console.log(rows);
-			for(var i in rows){
-				assist.get("ksike/response").show("Descripcion (" + i + "):"+ rows[i].des + "  <br> ");
-			}
-			assist.get("ksike/response").end();
-		},
-		this
-	);
+//... establishing a connection to a SQLite database
+this.query = require("secretary").configure({
+	driver: "sqlite",
+	name: 'data/ploy.db'
+});
+//... how to run a selection of data on the selected database
+this.query.execute(
+	"SELECT id, dt as des FROM user",
+	function(rows){
+		console.log(rows);
+		for(var i in rows){
+			assist.get("ksike/response").show("Descripcion (" + i + "):"+ rows[i].des + "  <br> ");
+		}
+		assist.get("ksike/response").end();
+	},
+	this
+);
 ```
 
 ## How to create a new custom driver
@@ -55,31 +55,31 @@ This library involves a component-based architecture, allowing developers to ext
 
 ### For this example, the driver named mydriver will be created: ./lib/mydriver/src/Main.js, with a structure similar to the one shown below:
 ```javascript
-	class MyDriver
-	{
-		constructor(opt=false){ }
+class MyDriver
+{
+	constructor(opt=false){ }
 
-		configure(opt=false){ }
+	configure(opt=false){ }
 
-		connect(callback=false, score=false){ }
+	connect(callback=false, score=false){ }
 
-		disconnect(){ }
+	disconnect(){ }
 
-		query(sql=false, callback=false, score=false) {}
+	query(sql=false, callback=false, score=false) {}
 
-		onError(error){}
+	onError(error){}
 
-		dsn(){ }
-	}
+	dsn(){ }
+}
 
-	exports.Main = MyDriver;
+exports.Main = MyDriver;
 ```
 
 ### How to configure
 ```javascript
-	//... how to load my custom driver
-	this.query = assist.get("ksike/secretary").configure({
-		driver: "mydriver"
-		//... Here you can specify all the options required by the driver constructor
-	});
+//... how to load my custom driver
+this.query = assist.get("ksike/secretary").configure({
+	driver: "mydriver"
+	//... Here you can specify all the options required by the driver constructor
+});
 ```
