@@ -23,7 +23,6 @@ As a technology policy proposed by the Ksike Framework, there are other implemen
 
 ### How to do insert or create 
 ```javascript
-
 	//... how to execute a data insert
 	this.query.execute([ "INSERT INTO Test2 VALUES (?,?)", [5, "TEST"]]);
 	//... how to create a table in the database
